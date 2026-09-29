@@ -1,0 +1,22 @@
+COMPONENTS
+
+main.py
+  - Controls menu and user navigation
+
+Expense Component
+  - Adds and reads expenses
+
+Settlement Component
+  - Calculates balances and payments
+
+Chore Component
+  - Displays and rotates duties
+
+Item Component
+  - Tracks shared belongings
+
+Search/Analytics Components
+  - Find records and summarize spending
+
+Validation Component
+  - Checks important inputs

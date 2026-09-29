@@ -1,0 +1,19 @@
+START
+  |
+Display Menu
+  |
+Get Choice
+  |
+Validate Choice
+  |
+Run Selected Module
+  |
+Read/Write Data if needed
+  |
+Display Result
+  |
+Return to Menu ---- Yes
+  |
+  No
+  v
+END

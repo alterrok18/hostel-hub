@@ -1,0 +1,14 @@
+HOSTELHUB SYSTEM ARCHITECTURE
+
+User
+  |
+  v
+main.py (menu)
+  |
+  +--> expense.py ------> expenses.csv
+  +--> settlement.py ---> expense data
+  +--> chores.py -------> chores.txt
+  +--> items.py --------> items.csv
+  +--> search.py -------> expense data
+  +--> analytics.py ----> expense data
+  +--> validation.py ---> input checks

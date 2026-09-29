@@ -1,0 +1,8 @@
+EXAMPLE: ADD EXPENSE
+
+Student -> main.py: Choose Add Expense
+main.py -> expense.py: add_expense()
+expense.py -> validation.py: validate amount/names
+validation.py -> expense.py: valid input
+expense.py -> expenses.csv: append record
+expense.py -> Student: show share/result

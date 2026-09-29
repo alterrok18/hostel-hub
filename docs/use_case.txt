@@ -1,0 +1,9 @@
+ACTOR: Student
+
+Student can:
+- Add/View Expenses
+- View Balances
+- Rotate/View Chores
+- Add/Borrow/Return/View Items
+- Search Expenses
+- View Statistics
