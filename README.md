@@ -1,53 +1,49 @@
 # 🏠 HostelHub
 
-**Who paid for the maggi? Whose turn is it to clean? Who has my extension board?**
+Who paid for the maggi? Whose turn is it to clean? Who has my extension board?
 HostelHub answers all three from your terminal.
 
-It's a small offline Python program for people who share a room, a PG, or a flat. It keeps track of shared expenses, chores and borrowed stuff so nobody has to scroll through the group chat to find out.
+It's a small offline Python program for people sharing a room, PG, or flat. It keeps tracks of shared expenses, chores and borrowed stuff so that no one has to go through the group chat to find out.
 
 ![Python](https://img.shields.io/badge/Python-3-blue) ![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen) ![Storage](https://img.shields.io/badge/storage-CSV%20%2F%20TXT-lightgrey)
-
 ---
 
-## 💡 Why I made this
+## 💡 Why did I make this
 
-In a hostel, everything shared runs on memory. Food bills, grocery runs, who did the dishes last, who borrowed the iron. It works until it doesn't.
+In a hostel, everything that is shared is handled through memory. Bills, grocery shopping, who washed the dishes, who borrowed the iron. This goes on until it doesn't.
 
-I wanted one simple tool that keeps all of this in one place, works without internet, and is easy enough that I can explain every line of it.
-
+I wanted a single tool that could keep track of all this information, work offline, and be simple enough that I could explain every line of its code.
 ---
-
-## ✨ What it does
+## ✨ Features
 
 | | Feature | In short |
 |---|---|---|
-| 💸 | **Expenses** | Add a bill, pick who shared it, and the split is worked out for you |
-| ⚖️ | **Balances** | See who should get money and who owes, with simple settlement suggestions |
-| 🧹 | **Chores** | View the chore list and rotate it so everyone gets a turn |
-| 📦 | **Shared items** | Add items, borrow them, return them, and always know who has what |
-| 🔍 | **Search** | Find any past expense by item, payer or person |
-| 📊 | **Statistics** | Total spent, average, biggest expense, and how much each person paid |
+| 💸 | Expenses | Add an expense with who shared in the cost and the share is calculated automatically |
+| ⚖️ | Balances | See who gets money and who pays, with simple suggestions to settle the balances |
+| 🧹 | Chores | View chore list, and rotate it so everyone takes a turn |
+| 📦 | Shared items | Add items, borrow them, return them, always know who has what |
+| 🔍 | Search | Find any expense in the past by item, payer or person |
+| 📊 | Statistics | View total spent, average, biggest expense, and how much each person paid |
 
-Everything is saved in plain CSV/TXT files, so your data is still there when you close the program.
-
+All the information is stored in CSV/TXT files so that it persists even after the program has exited.
 ---
 
 ## 🚀 Getting started
 
-You only need Python 3. There's nothing to install.
+You only need Python 3.
 
 ```bash
-git clone https://github.com/<your-username>/HostelHub.git
+git clone https://github.com//HostelHub.git
 cd HostelHub
 python main.py
 ```
 
-You'll see this menu:
+You will see this menu:
 
 ```text
 =============================================
-              HOSTELHUB
-     Smart Hostel Utility Manager
+HOSTELHUB
+Smart Hostel Utility Manager
 =============================================
 1. Add expense
 2. View expenses
@@ -63,27 +59,25 @@ You'll see this menu:
 0. Exit
 ```
 
-Type a number, press Enter, and follow the prompts.
-
+Enter an option and press Enter, then follow the prompts.
 ---
+## 🗂️ Organisation
 
-## 🗂️ How it's organised
-
-Each feature lives in its own small file, and `main.py` just shows the menu and calls the right one.
+Each feature has its own module and `main.py` is just the menu and a switch-case to call the right one.
 
 ```text
 HostelHub/
-├── main.py              # the menu
+├── main.py       # the menu
 ├── modules/
-│   ├── expense.py       # add and view expenses
-│   ├── settlement.py    # balances and who pays whom
-│   ├── chores.py        # view and rotate chores
-│   ├── items.py         # shared items: add, borrow, return
-│   ├── search.py        # search expenses
-│   ├── analytics.py     # statistics
-│   └── validation.py    # checks user input
-├── data/                # saved CSV / TXT files
-├── tests/               # test_hostelhub.py
+│  ├── expense.py    # add and view expenses
+│  ├── settlement.py  # balances and who pays whom
+│  ├── chores.py    # view and rotate chores
+│  ├── items.py     # shared items: add, borrow, return
+│  ├── search.py    # search expenses
+│  ├── analytics.py   # statistics
+│  └── validation.py  # checks user input
+├── data/        # saved CSV / TXT files
+├── tests/        # test_hostelhub.py
 ├── docs/
 ├── screenshots/
 ├── README.md
@@ -96,57 +90,43 @@ HostelHub/
 | `expenses.csv` | item, amount, paid_by, people, share |
 | `items.csv` | item, owner, borrowed_by |
 | `chores.txt` | name and chore |
-
 ---
 
-## 🧠 How the maths works
+## 🧠 How the calculations work
 
-**Balances:** for every expense, the person who paid is credited the full amount, and everyone sharing it is charged their share. After going through all expenses, a positive balance means "gets money back" and a negative one means "owes money".
+Balances: for every expense, the person who paid is credited the full amount, and everyone sharing in the expense is debited their share. After all expenses are processed, positive balances are those who get money, and negative balances are those who pay.
 
-**Settlement:** the program then matches people who owe with people who should receive, until everything evens out.
+Settlement: The program pairs up people who owe with people who are owed, until all balances are settled.
 
-**Chore rotation:** the last chore moves to the front of the list, so everyone shifts by one.
-
+Chore rotation: The last chore moves to the front of the list, so everyone gets a turn.
 ---
 
-## 🛡️ What it won't let you do
-
-The program checks your input so it doesn't crash or save nonsense:
-
-- Zero or negative amounts are rejected
-- Invalid menu choices show a message and bring the menu back
-- The same shared item can't be added twice
-- An item that's already borrowed can't be borrowed again
-- Borrowing an item that doesn't exist is rejected
-
+## 🛡️ What the program guards against
+The program takes care of erroneous input to prevent crashing:
+- Zero or negative amounts are not allowed
+- Choice other than numbers in the menu prompt are ignored and the menu is shown again
+- A shared item may not be added twice
+- An item that is already borrowed may not be borrowed again
+- Borrowing an item that does not exist is not allowed
 ---
-
 ## 🧪 Testing
-
 ```bash
 python tests/test_hostelhub.py
 ```
-
-This checks the balance calculation. I tested the rest by hand, going through the menu with wrong inputs: bad menu options, zero and negative amounts, duplicate items, missing items and already-borrowed items.
-
+The test checks the correctness of the balance calculation. I tested the rest of the program manually by entering all the possible wrong input: bad menu option, amounts, zero, negative, duplicate items, etc.
 ---
-
 ## 📸 Screenshots
-
-Screenshots of the running program are in the [`screenshots`](screenshots/) folder.
-
+Inside the [`screenshots`](screenshots/) folder.
 ---
+## 🔮 Future improvements
 
-## 🔮 What I'd add next
-
-- Dates and categories for expenses
+- Date and category for expenses
 - Monthly charts and reports
-- Accounts, so multiple rooms can use it
-- A simple GUI
-- A database instead of files
-
+- Accounts, so that people in different rooms can use the same program
+- A graphical interface
+- A database to replace CSV files
 ---
 
 ## 📚 Concepts used
 
-Functions, loops, conditionals, lists, dictionaries, string handling, file and CSV handling, searching, counting, summing, finding the maximum, and list rotation. Built for **CSE1021, Introduction to Problem Solving and Programming**.
+Functions, loops, conditionals, lists, dictionaries, string handling, file and CSV handling, searching, counting, summing, finding the maximum, and list rotation. This project is for CSE1021, Introduction to Problem Solving and Programming.
