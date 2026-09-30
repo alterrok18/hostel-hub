@@ -116,7 +116,7 @@ python tests/test_hostelhub.py
 The test checks the correctness of the balance calculation. I tested the rest of the program manually by entering all the possible wrong input: bad menu option, amounts, zero, negative, duplicate items, etc.
 ---
 ## 📸 Screenshots
-Inside the [`screenshots`](screenshots/) folder.
+Inside the [`Screenshots`](Screenshots/) folder.
 ---
 ## 🔮 Future improvements
 
